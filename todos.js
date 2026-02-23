@@ -31,8 +31,7 @@ let toDos = [{
     completed: false,
     editing: false
 }];
-//id1: make sure the new id is always unique
-let id1 = toDos.length;
+
 
 //let toDos3=[];
 
@@ -45,6 +44,8 @@ const savedToDos = JSON.parse(localStorage.getItem("toDos"));
 if(savedToDos){
     toDos = savedToDos;
 }
+//id1: make sure the new id is always unique
+let id1 = toDos.length >0 ? Math.max(...toDos.map(t=>t.id)) :0;
 
 const filters = {
     searchText: ""
