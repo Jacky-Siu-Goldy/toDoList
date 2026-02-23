@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDos App</title>
+</head>
+<body>
+    <h1>ToDos App</h1>
+    <p id="numbOfToDos"></p>
+    <input id="filter-input" type="text" placeholder="Filter toDos">
+    <label for="hide-completed">Hide-Completed <input id="hide-completed" type="checkbox" name="hide-completed"></label>
+    <label for="hide-inactive">Hide-Inactive <input id="hide-inactive" type="checkbox" name="hide-inactive"></label>
+    <div id="toDos">
+        <form>
+            <table border="1">
+                <thead>
+                    <tr>
+                    <th>ToDo</th>
+                    <th>Active</th>
+                    <th>Completed</th>
+                    </tr> 
+                </thead>
+                <tbody id="newToDos2">
+
+                </tbody>
+            </table>
+       </form>
+    </div>
+     <fieldset>
+    <form id="toDos-form"><input type="text" placeholder="Add ToDos" name="newToDos" >
+       
+        <label for="active">active <input id="active" type="checkbox" name="active" >
+        </label>
+        <label for="completed">
+            completed
+            <input id="completed" type="checkbox" name="completed">
+        </label>
+       
+        <button>submit</button></form> </fieldset>
+
+    <script src="./todos.js"></script>
+</body>
+</html>
