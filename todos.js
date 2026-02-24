@@ -39,13 +39,13 @@ let toDos = [{
 let hide_completed = false;
 let hide_inactive = false;
 
-const savedToDos = JSON.parse(localStorage.getItem("toDos"));
+const savedToDos = JSON.parse(localStorage.getItem("toDos")) || [];
 
 if(savedToDos){
     toDos = savedToDos;
 }
-//id1: make sure the new id is always unique
-let id1 = toDos.length >0 ? Math.max(...toDos.map(t=>t.id)) :0;
+//nextId: make sure the new id is always unique
+let nextId = Number(localStorage.getItem("nextId")) || toDos.length >0 ? Math.max(...toDos.map(t=>t.id)) + 1: 1;
 
 const filters = {
     searchText: ""
@@ -217,15 +217,16 @@ document.querySelector("#filter-input").addEventListener('input', function(e){
 //Event Listener for the add to do form
 document.querySelector('#toDos-form').addEventListener('submit', function (e){
     e.preventDefault();
-    ++id1;
+    
     console.log(e.target.elements.newToDos.value);
     const isCheckedActive = document.getElementById("active").checked;
     const isCheckedCompleted = document.getElementById("completed").checked;
-    addToDos(id1, e.target.elements.newToDos.value, isCheckedActive, isCheckedCompleted, false);
+    addToDos(nextId, e.target.elements.newToDos.value, isCheckedActive, isCheckedCompleted, false);
     
     document.getElementById("active").checked = false;
     document.getElementById("completed").checked = false;
-
+   nextId++;
+   localStorage.setItem("nextId", nextId);
    saveToDos();
    renderToDos();
     e.target.elements.newToDos.value = '';
@@ -234,12 +235,13 @@ document.querySelector('#toDos-form').addEventListener('submit', function (e){
 //Event Listener for the Hide-Completed checkbox
 document.querySelector("#hide-completed").addEventListener('change', function(e){
     hide_completed = e.target.checked;
-
+   
     renderToDos();
 })
 
 //Event Listener for the Hide-inactive checkbox
 document.querySelector("#hide-inactive").addEventListener('change', function(e){
     hide_inactive = e.target.checked;
+  
      renderToDos();
 })
