@@ -22,3 +22,4 @@
     • CSS
     • Vanilla JavaScript (ES6+)
     • Browser localStorage API
+https://jacky-siu-goldy.github.io/toDoList/
